@@ -43,7 +43,30 @@
     var kp = q('#keypad');
     if (kp) kp.setAttribute('data-pressed', state.pressed || 'none');
     var card = q('#paycard');
-    if (card) card.style.transform = state.cardIn ? 'translateY(-12px) rotate(0deg) scale(0.96)' : 'rotate(-6deg)';
+    var nfc = q('#nfc');
+    if (card) {
+      card.classList.toggle('payv-bob', !state.auto && s === 'tap' && !state.cardIn);
+      if (state.cardIn && !card._in && nfc) {
+        // Measure the card at rest, then fly it onto the terminal's tap area.
+        var prev = card.style.transform;
+        card.style.transition = 'none';
+        card.style.transform = 'rotate(-6deg)';
+        var cr = card.getBoundingClientRect();
+        var nr = nfc.getBoundingClientRect();
+        card.style.transform = prev;
+        void card.offsetWidth;
+        card.style.transition = 'transform 0.55s cubic-bezier(.2,.8,.2,1)';
+        var dx = (nr.left + nr.width / 2) - (cr.left + cr.width / 2);
+        var dy = (nr.top + nr.height / 2) - (cr.top + cr.height / 2);
+        card.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) rotate(0deg) scale(0.62)';
+        card._in = true;
+      } else if (!state.cardIn && card._in) {
+        card.style.transition = 'transform 0.55s cubic-bezier(.2,.8,.2,1)';
+        card.style.transform = 'rotate(-6deg)';
+        card._in = false;
+      }
+    }
+    if (nfc) nfc.style.color = state.cardIn ? 'var(--accent)' : '#D8D8D8';
     var dl = q('#demoLabel');
     if (dl) dl.textContent = state.auto ? 'Auto demo · tap any key to try it' : 'Your turn · type, confirm, tap';
     var hints = state.auto
@@ -71,13 +94,14 @@
     t += 400;
     later(t, function () { set({ pressed: 'ok', screen: 'tap', lights: 1 }); });
     later(t + 200, function () { set({ pressed: 'none' }); });
-    later(t + 700, function () { set({ cardIn: true }); });
-    later(t + 900, function () { set({ screen: 'processing', lights: 2 }); });
-    later(t + 1250, function () { set({ lights: 3 }); });
-    later(t + 1600, function () { set({ lights: 4 }); });
+    later(t + 500, function () { set({ cardIn: true }); });
+    later(t + 1050, function () { set({ screen: 'processing', lights: 2 }); });
+    later(t + 1350, function () { set({ lights: 3 }); });
+    later(t + 1650, function () { set({ lights: 4 }); });
     later(t + 2000, function () {
-      set({ screen: 'success', cardIn: false, lights: 0, bal: Math.round((state.bal + parseFloat(fare)) * 100) / 100 });
+      set({ screen: 'success', lights: 0, bal: Math.round((state.bal + parseFloat(fare)) * 100) / 100 });
     });
+    later(t + 2500, function () { set({ cardIn: false }); });
     later(t + 4800, function () { runDemo(i + 1); });
   }
 
@@ -105,7 +129,8 @@
     } else if (kind === 'clr') {
       if (c.screen === 'enter' || c.screen === 'success') patch = { screen: 'enter', amt: '' };
     } else if (kind === 'x') {
-      if (c.screen === 'tap' || c.screen === 'balance') patch = { screen: 'enter', lights: 0 };
+      if (c.screen === 'tap' && state.cardIn) patch = null;
+      else if (c.screen === 'tap' || c.screen === 'balance') patch = { screen: 'enter', lights: 0 };
       else if (c.screen !== 'processing') patch = { screen: 'enter', amt: '' };
     } else if (kind === 'ok') {
       if ((c.screen === 'enter' || c.screen === 'success') && num > 0) patch = { screen: 'tap', lights: 1 };
@@ -113,13 +138,15 @@
     } else if (kind === 'bal') {
       if (c.screen !== 'processing' && c.screen !== 'tap') patch = { screen: c.screen === 'balance' ? 'enter' : 'balance' };
     } else if (kind === 'card') {
-      if (c.screen === 'tap') {
-        patch = { screen: 'processing', cardIn: true, lights: 2 };
-        later(400, function () { set({ lights: 3 }); });
-        later(800, function () { set({ lights: 4 }); });
+      if (c.screen === 'tap' && !state.cardIn) {
+        patch = { cardIn: true };
+        later(550, function () { set({ screen: 'processing', lights: 2 }); });
+        later(850, function () { set({ lights: 3 }); });
+        later(1150, function () { set({ lights: 4 }); });
         later(2000, function () {
-          set({ screen: 'success', cardIn: false, lights: 0, bal: Math.round((state.bal + num) * 100) / 100 });
+          set({ screen: 'success', lights: 0, bal: Math.round((state.bal + num) * 100) / 100 });
         });
+        later(2500, function () { set({ cardIn: false }); });
       }
     }
     var base = wasAuto ? { auto: false, screen: 'enter', amt: '', pressed: 'none', cardIn: false, lights: 0 } : {};
