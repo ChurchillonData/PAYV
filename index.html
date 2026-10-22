@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAYV · One network. Everyday commerce.</title>
+<meta name="description" content="PAYV is a physical-first digital payment network for everyday commerce in Ghana: a contactless card, a simple merchant terminal, and an app as the control centre.">
+<meta name="theme-color" content="#0B0B0B">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PAYV · One network. Everyday commerce.">
+<meta property="og:description" content="A physical-first digital payment network for everyday commerce in Ghana. Tap. Pay. Move.">
+<meta property="og:image" content="https://churchillondata.github.io/PAYV/assets/trotro-mate.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0B0B'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='900' text-anchor='middle' fill='%23C8F04A'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800;900&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+:root{--accent:#C8F04A;--accent-glass:#C8F04AE6}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+[hidden]{display:none !important}
+
+body{margin:0;background:#F2EFE9}
+html{scroll-behavior:smooth}
+a{color:#0B0B0B}a:hover{color:#3A3732}
+button{font:inherit}
+.payv-track{display:flex;width:max-content;animation:payv-marquee 30s linear infinite}
+@keyframes payv-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.payv-track{animation:none}html{scroll-behavior:auto}}
+button:focus-visible,a:focus-visible{outline:3px solid #7FA8FF;outline-offset:3px}
+.payv-glass{background:rgba(255,255,255,0.14);-webkit-backdrop-filter:blur(18px) saturate(180%);backdrop-filter:blur(18px) saturate(180%);border:1px solid rgba(255,255,255,0.34);box-shadow:inset 0 1px 0 rgba(255,255,255,0.5),inset 0 -1px 0 rgba(255,255,255,0.08),0 10px 30px rgba(0,0,0,0.28);transition:transform .2s ease,box-shadow .2s ease}
+a.payv-glass:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.6),0 14px 36px rgba(0,0,0,0.32)}
+.payv-mark{color:#3E5C0A}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){.payv-mark{background-image:linear-gradient(90deg,#1E2B05 0%,#4F6E0C 16%,#8DB51F 30%,#0D1102 45%,#8DB51F 58%,#62870F 76%,#1E2B05 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}}
+.payv-spin{animation:payv-spin .9s linear infinite}
+@keyframes payv-spin{to{transform:rotate(360deg)}}
+.payv-pulse{animation:payv-pulse 1.1s ease-in-out infinite}
+@keyframes payv-pulse{0%,100%{opacity:.55;transform:scale(.9)}50%{opacity:1;transform:scale(1.05)}}
+.payv-pop{animation:payv-pop .45s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes payv-pop{0%{transform:scale(.3);opacity:0}100%{transform:scale(1);opacity:1}}
+.payv-draw{stroke-dasharray:22;stroke-dashoffset:22;animation:payv-draw .35s .2s ease-out forwards}
+@keyframes payv-draw{to{stroke-dashoffset:0}}
+.payv-key{transition:transform .12s ease,background-color .12s ease,box-shadow .12s ease}
+.payv-key:active{transform:scale(.94)}
+.payv-keypad[data-pressed="d1"]>button:nth-child(1),.payv-keypad[data-pressed="d2"]>button:nth-child(2),.payv-keypad[data-pressed="d3"]>button:nth-child(3),.payv-keypad[data-pressed="d4"]>button:nth-child(4),.payv-keypad[data-pressed="d5"]>button:nth-child(5),.payv-keypad[data-pressed="d6"]>button:nth-child(6),.payv-keypad[data-pressed="d7"]>button:nth-child(7),.payv-keypad[data-pressed="d8"]>button:nth-child(8),.payv-keypad[data-pressed="d9"]>button:nth-child(9),.payv-keypad[data-pressed="clr"]>button:nth-child(10),.payv-keypad[data-pressed="d0"]>button:nth-child(11),.payv-keypad[data-pressed="dot"]>button:nth-child(12),.payv-keypad[data-pressed="bal"]>button:nth-child(13),.payv-keypad[data-pressed="x"]>button:nth-child(14){background:#505050 !important;transform:scale(.93)}
+.payv-keypad[data-pressed="ok"]>button:nth-child(15){background:#1E5A3A !important;transform:scale(.93);box-shadow:0 0 0 3px rgba(61,220,132,.4)}
+.payv-approve{animation:payv-approve .28s ease-out both}
+@keyframes payv-approve{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
+.payv-ring{stroke-dasharray:66;stroke-dashoffset:66;animation:payv-draw .45s ease-out forwards}
+.payv-tick{stroke-dasharray:14;stroke-dashoffset:14;animation:payv-draw .25s .4s ease-out forwards}
+@media (prefers-reduced-motion: reduce){.payv-spin,.payv-pulse,.payv-pop,.payv-approve{animation:none}.payv-draw,.payv-ring,.payv-tick{animation:none;stroke-dashoffset:0}}
+
+</style>
+</head>
+<body>
+<div style="width: 100%; background: #F2EFE9; color: #0B0B0B; font-family: 'Urbanist', system-ui, sans-serif">
+
+<header style="max-width: 1200px; margin: 0 auto; padding: 22px clamp(16px, 4vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 16px; box-sizing: border-box">
+<div style="font-size: 30px; font-weight: 800; letter-spacing: -0.03em">PAYV</div>
+<div style="display: flex; align-items: center; gap: 14px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #5F5B54">Concept pitch</span>
+<a href="#ask" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: #0B0B0B; color: #F2EFE9; font-size: 15px; font-weight: 600; text-decoration: none">Get in touch</a>
+</div>
+</header>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 8px clamp(16px, 4vw, 48px) 36px; box-sizing: border-box">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; font-size: clamp(26px, 4vw, 52px); font-weight: 700; letter-spacing: -0.02em; line-height: 1">
+<span>©2026</span>
+<span>PAYMENTS</span>
+</div>
+<h1 class="payv-mark" style="margin: 10px 0 0; font-size: clamp(120px, 30vw, 430px); line-height: 0.84; font-weight: 900; letter-spacing: -0.05em; text-align: center">PAYV</h1>
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; margin-top: 26px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #5F5B54">
+<span>One network. Everyday commerce.</span>
+<span>Ghana first · Africa next</span>
+</div>
+</section>
+
+<section style="background: radial-gradient(120% 90% at 90% 100%, #33410B 0%, #141A06 42%, #0B0B0B 72%); color: #F5F3EE">
+<div style="max-width: 1200px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 56px; align-items: center; box-sizing: border-box">
+
+<div style="flex: 1 1 460px; min-width: 0; position: relative; border-radius: 32px; overflow: hidden; background: #0B0B0B; box-shadow: 0 30px 80px rgba(0,0,0,0.45)">
+<div style="position: relative">
+<img src="assets/trotro-mate.jpg" alt="A trotro mate leans out of a minibus doorway in traffic, waving" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,11,0.3) 0%, rgba(11,11,11,0) 20%, rgba(11,11,11,0) 36%, rgba(11,11,11,0.72) 58%, #0B0B0B 96%)"></div>
+<span class="payv-glass" style="position: absolute; top: 18px; left: 18px; padding: 8px 14px; border-radius: 999px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF">Today · cash and change</span>
+</div>
+<div style="position: relative; z-index: 1; margin-top: -58%; padding: 0 clamp(20px, 3vw, 36px) clamp(26px, 3vw, 36px); display: flex; flex-direction: column; gap: 26px; text-shadow: 0 2px 16px rgba(0,0,0,0.6)">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+<div><div style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: #FFFFFF; white-space: nowrap">1 tap</div><div style="margin-top: 8px; font-size: 15px; line-height: 1.3; color: #E6E2DB">to pay</div></div>
+<div><div style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: #FFFFFF; white-space: nowrap">0 apps</div><div style="margin-top: 8px; font-size: 15px; line-height: 1.3; color: #E6E2DB">opened at the till</div></div>
+<div><div style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: #FFFFFF; white-space: nowrap">0 cash</div><div style="margin-top: 8px; font-size: 15px; line-height: 1.3; color: #E6E2DB">handled by PAYV</div></div>
+</div>
+<p style="margin: 0; font-size: clamp(19px, 1.9vw, 24px); line-height: 1.4; font-weight: 500; color: #FFFFFF">A physical-first digital payment network for everyday commerce in Ghana: a contactless card, a simple merchant terminal, and an app as the control centre.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="#ask" class="payv-glass" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 24px; border-radius: 999px; background: var(--accent-glass); color: #0B0B0B; font-size: 18px; font-weight: 700; text-decoration: none; text-shadow: none; box-sizing: border-box">Partner with us <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+<a href="#how" class="payv-glass" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 24px; border-radius: 999px; color: #FFFFFF; font-size: 18px; font-weight: 700; text-decoration: none; text-shadow: none; box-sizing: border-box">See how it works <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<span class="payv-glass" style="padding: 10px 18px; border-radius: 999px; font-size: 15px; font-weight: 600; color: #FFFFFF; text-shadow: none">Contactless card</span>
+<span class="payv-glass" style="padding: 10px 18px; border-radius: 999px; font-size: 15px; font-weight: 600; color: #FFFFFF; text-shadow: none">Merchant terminal</span>
+<span class="payv-glass" style="padding: 10px 18px; border-radius: 999px; font-size: 15px; font-weight: 600; color: #FFFFFF; text-shadow: none">Control-centre app</span>
+<span class="payv-glass" style="padding: 10px 18px; border-radius: 999px; font-size: 15px; font-weight: 600; color: #FFFFFF; text-shadow: none">Zero cash handled</span>
+</div>
+</div>
+</div>
+
+<section aria-label="Interactive PAYV terminal demo" style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 22px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #A19D96" id="demoLabel">Auto demo · tap any key to try it</span>
+<div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: center">
+
+<div style="width: 272px; padding: 16px 18px 14px; border-radius: 40px; background: #171717; border: 1px solid #2E2E2E; box-shadow: 0 32px 64px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07); display: flex; flex-direction: column; gap: 14px; box-sizing: border-box">
+<div style="display: flex; justify-content: center"><span style="display: block; width: 8px; height: 8px; border-radius: 50%; background: #3A3A3A" id="led"></span></div>
+<div style="position: relative; overflow: hidden; height: 152px; box-sizing: border-box; background: #050505; border: 1px solid #262626; border-radius: 16px; padding: 12px 16px 14px; display: flex; flex-direction: column; justify-content: space-between; font-family: -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif; color: #F5F3EE">
+<div style="display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 0.14em; color: #8C8C8C"><span>PAYV</span><span>4G</span></div>
+<div data-screen="enter">
+<div style="display: flex; flex-direction: column; gap: 5px">
+<span style="font-size: 12px; color: #9A9A9A">Enter amount</span>
+<span style="font-size: 27px; font-weight: 600; letter-spacing: -0.01em">GH₵ <span data-bind="amtText">0.00</span></span>
+<span style="font-size: 11px; color: #9A9A9A">Press ✓ to confirm</span>
+</div>
+</div>
+<div data-screen="whirl" hidden>
+<div style="display: flex; align-items: center; gap: 14px">
+<span style="position: relative; display: block; width: 54px; height: 54px; flex: 0 0 54px">
+<span class="payv-spin" style="position: absolute; inset: 0; display: block; border-radius: 50%; border: 3px solid rgba(255,255,255,0.12); border-top-color: var(--accent); border-right-color: var(--accent); box-sizing: border-box"></span>
+<span class="payv-pulse" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #F5F3EE"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M6.5 8.5c2 2 2 5 0 7"></path><path d="M10.5 6.5c3.1 3.1 3.1 7.9 0 11"></path><path d="M14.5 4.5c4.2 4.2 4.2 10.8 0 15"></path></svg></span>
+</span>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-size: 12px; color: var(--accent)" id="whirlLabel">Tap card to pay</span>
+<span style="font-size: 22px; font-weight: 700; letter-spacing: -0.01em">GH₵ <span data-bind="amtFixed">0.00</span></span>
+<div aria-hidden="true" style="display: flex; gap: 5px; margin-top: 3px"><span style="display: block; width: 18px; height: 5px; border-radius: 3px; background: #2E2E2E" data-light="1"></span><span style="display: block; width: 18px; height: 5px; border-radius: 3px; background: #2E2E2E" data-light="2"></span><span style="display: block; width: 18px; height: 5px; border-radius: 3px; background: #2E2E2E" data-light="3"></span><span style="display: block; width: 18px; height: 5px; border-radius: 3px; background: #2E2E2E" data-light="4"></span></div>
+</div>
+</div>
+</div>
+<div data-screen="success" hidden>
+<div class="payv-approve" style="position: absolute; inset: 0; background: #0B7F3D; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px">
+<svg width="40" height="40" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><circle class="payv-ring" cx="12" cy="12" r="10.5"></circle><path class="payv-tick" d="M7.5 12.5l3 3 6-6.5"></path></svg>
+<span style="font-size: 15px; font-weight: 700; letter-spacing: 0.01em">Approved</span>
+<span style="font-size: 22px; font-weight: 700; letter-spacing: -0.01em">GH₵ <span data-bind="amtFixed">0.00</span></span>
+</div>
+</div>
+<div data-screen="balance" hidden>
+<div style="display: flex; flex-direction: column; gap: 5px">
+<span style="font-size: 12px; color: #9A9A9A">Available balance</span>
+<span style="font-size: 27px; font-weight: 600; letter-spacing: -0.01em">GH₵ <span data-bind="balText">248.50</span></span>
+<span style="font-size: 11px; color: #9A9A9A">Verified just now</span>
+</div>
+</div>
+</div>
+
+<div class="payv-keypad" id="keypad" data-pressed="none" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px">
+<button type="button" class="payv-key" data-act="d1" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #F2F2F2; font-size: 21px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">1</button>
+<button type="button" class="payv-key" data-act="d2" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #F2F2F2; font-size: 21px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">2</button>
+<button type="button" class="payv-key" data-act="d3" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #F2F2F2; font-size: 21px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">3</button>
+<button type="button" class="payv-key" data-act="d4" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #F2F2F2; font-size: 21px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">4</button>
+<button type="button" class="payv-key" data-act="d5" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #F2F2F2; font-size: 21px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">5</button>
+<button type="button" class="payv-key" data-act="d6" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #F2F2F2; font-size: 21px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">6</button>
+<button type="button" class="payv-key" data-act="d7" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #F2F2F2; font-size: 21px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">7</button>
+<button type="button" class="payv-key" data-act="d8" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #F2F2F2; font-size: 21px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">8</button>
+<button type="button" class="payv-key" data-act="d9" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #F2F2F2; font-size: 21px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">9</button>
+<button type="button" class="payv-key" data-act="clr" aria-label="Clear amount" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #FF6B5E; font-size: 21px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">C</button>
+<button type="button" class="payv-key" data-act="d0" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #F2F2F2; font-size: 21px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">0</button>
+<button type="button" class="payv-key" data-act="dot" aria-label="Decimal point" style="height: 46px; border-radius: 14px; background: #232323; border: 1px solid #343434; color: #F2F2F2; font-size: 24px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0">.</button>
+<button type="button" class="payv-key" data-act="bal" aria-label="Balance" style="height: 46px; border-radius: 14px; background: #2B2B2B; border: 1px solid #3C3C3C; color: #F2F2F2; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 0"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><rect x="3" y="6" width="18" height="13" rx="2.5"></rect><path d="M3 10.5h18"></path><path d="M15.5 15h2.5"></path></svg>Balance</button>
+<button type="button" class="payv-key" data-act="x" aria-label="Cancel" style="height: 46px; border-radius: 14px; background: #2B2B2B; border: 1px solid #3C3C3C; color: #FF5A4E; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></button>
+<button type="button" class="payv-key" data-act="ok" aria-label="Confirm" style="height: 46px; border-radius: 14px; background: #2B2B2B; border: 1px solid #3C3C3C; color: #3DDC84; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></button>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px 0 2px; color: #D8D8D8">
+<svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="10"></circle><path d="M8 9.3c1.5 1.5 1.5 3.9 0 5.4"></path><path d="M11 7.4c2.6 2.6 2.6 6.6 0 9.2"></path><path d="M14 5.6c3.6 3.6 3.6 9.2 0 12.8"></path></svg>
+<span style="font-size: 10px; letter-spacing: 0.26em; font-weight: 800">PAYV</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 16px">
+<button type="button" id="paycard" data-act="card" aria-label="Tap the PAYV card on the terminal" style="width: 220px; height: 138px; border-radius: 16px; border: none; background: var(--accent); color: #0B0B0B; padding: 18px 20px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; align-items: stretch; cursor: pointer; box-shadow: 0 22px 44px rgba(0,0,0,0.5); transform: rotate(-6deg); transition: transform 0.35s ease; font-family: 'Urbanist', sans-serif; text-align: left">
+<span style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 26px; font-weight: 800; letter-spacing: -0.03em">PAYV</span><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round"><path d="M6 8.5c2 2 2 5 0 7"></path><path d="M10 6.5c3.1 3.1 3.1 7.9 0 11"></path><path d="M14 4.5c4.2 4.2 4.2 10.8 0 15"></path></svg></span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.14em">CONTACTLESS · GHANA</span>
+</button>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #A19D96">Tap the card</span>
+</div>
+
+</div>
+<p id="hint" aria-live="polite" style="margin: 0; min-height: 26px; font-size: 17px; font-weight: 500; text-align: center; color: #F5F3EE">The merchant keys in the fare</p>
+</section>
+
+</div>
+</section>
+
+<section aria-label="Where PAYV works" style="background: var(--accent); color: #0B0B0B; overflow: hidden; padding: 26px 0">
+<div class="payv-track">
+<span style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>Trotro fares</span>
+<span style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>Market stalls</span>
+<span style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>School canteens</span>
+<span style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>Campuses</span>
+<span style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>Fuel stations</span>
+<span style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>Corner shops</span>
+<span aria-hidden="true" style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>Trotro fares</span>
+<span aria-hidden="true" style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>Market stalls</span>
+<span aria-hidden="true" style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>School canteens</span>
+<span aria-hidden="true" style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>Campuses</span>
+<span aria-hidden="true" style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>Fuel stations</span>
+<span aria-hidden="true" style="display: inline-flex; align-items: center; gap: 18px; padding: 0 28px; font-size: clamp(20px, 2.4vw, 30px); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap"><span style="font-weight: 800">/</span>Corner shops</span>
+</div>
+</section>
+
+<section style="max-width: 1100px; margin: 0 auto; padding: clamp(64px, 9vw, 112px) clamp(16px, 4vw, 48px) clamp(56px, 7vw, 88px); box-sizing: border-box; text-align: center">
+<div style="display: flex; flex-direction: column; gap: 10px; font-size: clamp(18px, 1.8vw, 22px); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #5F5B54">
+<span>Ghana first</span>
+<span>One route</span>
+<span>One market</span>
+<span>Then Africa</span>
+</div>
+<p style="margin: clamp(40px, 6vw, 72px) 0 0; font-size: clamp(30px, 4.4vw, 58px); font-weight: 700; line-height: 1.12; letter-spacing: -0.02em">Paying digitally should feel as natural as handing over cash. One tap, one confirmation, done. <span style="color: #858178">No app to open, no number to type, no menu to navigate.</span></p>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) clamp(72px, 9vw, 112px); box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; gap: 32px 56px; align-items: center">
+<div style="flex: 3 1 460px; min-width: 0">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #5F5B54">The problem</span>
+<h2 style="margin: 14px 0 0; font-size: clamp(36px, 5vw, 64px); font-weight: 700; line-height: 1.04; letter-spacing: -0.025em">Face to face, digital money still takes five steps.</h2>
+<p style="margin: 18px 0 0; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: #5F5B54; max-width: 620px">Mobile money is brilliant for sending money home. At a trotro door, a market stall or a canteen queue, the steps add up on every small payment, all day.</p>
+</div>
+<div style="flex: 2 1 300px; min-width: 0; max-width: 460px; position: relative; border-radius: 28px; overflow: hidden">
+<img src="assets/market-porter.jpg" alt="A trader carries a tray of onions on her head through a busy market" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover">
+<span class="payv-glass" style="position: absolute; left: 16px; bottom: 16px; padding: 9px 15px; border-radius: 999px; font-size: 14px; font-weight: 600; color: #FFFFFF; text-shadow: 0 1px 8px rgba(0,0,0,0.5)">Small payments, all day</span>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px">
+<div style="flex: 1 1 180px; background: #FFFFFF; border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 18px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5F5B54">01</span><span style="font-size: 21px; font-weight: 700; line-height: 1.2">Open the app</span></div>
+<div style="flex: 1 1 180px; background: #FFFFFF; border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 18px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5F5B54">02</span><span style="font-size: 21px; font-weight: 700; line-height: 1.2">Enter payment details</span></div>
+<div style="flex: 1 1 180px; background: #FFFFFF; border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 18px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5F5B54">03</span><span style="font-size: 21px; font-weight: 700; line-height: 1.2">Confirm the amount</span></div>
+<div style="flex: 1 1 180px; background: #FFFFFF; border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 18px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5F5B54">04</span><span style="font-size: 21px; font-weight: 700; line-height: 1.2">Authorise</span></div>
+<div style="flex: 1 1 180px; background: #FFFFFF; border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 18px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5F5B54">05</span><span style="font-size: 21px; font-weight: 700; line-height: 1.2">Wait for confirmation</span></div>
+</div>
+<div style="margin-top: 12px; background: #0B0B0B; color: #F5F3EE; border-radius: 22px; padding: 26px 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent)">With PAYV</span>
+<span style="font-size: clamp(30px, 3.4vw, 42px); font-weight: 800; letter-spacing: -0.02em">Tap. Done.</span>
+<span style="font-size: 18px; color: #A19D96">One gesture. No phone required.</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px 48px; margin-top: 48px; padding-top: 32px; border-top: 1px solid #CFCAC0">
+<h3 style="flex: 1 1 280px; margin: 0; font-size: 26px; font-weight: 700; line-height: 1.2">Merchants have a second problem.</h3>
+<p style="flex: 2 1 420px; margin: 0; font-size: 19px; line-height: 1.55; color: #5F5B54">Most payment terminals are built for supermarkets: big screens, many features, high cost. A trader needs four things: key in an amount, take a tap, see the result, check the balance. PAYV is built around exactly that.</p>
+</div>
+</section>
+
+<section style="background: #E8E4DC">
+<div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 9vw, 112px) clamp(16px, 4vw, 48px); box-sizing: border-box">
+<div style="text-align: center">
+<h2 style="margin: 0; font-size: clamp(36px, 5vw, 64px); font-weight: 700; line-height: 1.04; letter-spacing: -0.025em">One network. Four parts.</h2>
+<p style="margin: 16px auto 0; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: #5F5B54; max-width: 620px">Physical where the payment happens. Digital everywhere else.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 48px">
+<article style="flex: 1 1 250px; background: #FFFFFF; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 14px"><span style="display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 15px; background: #0B0B0B; color: #F5F3EE"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="M3 10h18"></path><path d="M15 15h3"></path></svg></span><h3 style="margin: 0; font-size: 26px; font-weight: 700">PAYV Card</h3></div>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5F5B54">Contactless and secure. Pay without opening an app. Works for people without smartphones, and can be blocked and replaced if lost.</p>
+</article>
+<article style="flex: 1 1 250px; background: #FFFFFF; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 14px"><span style="display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 15px; background: #0B0B0B; color: #F5F3EE"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M9 6.5h6"></path><path d="M9 11h.01M12 11h.01M15 11h.01M9 14h.01M12 14h.01M15 14h.01M9 17h.01M12 17h.01M15 17h.01"></path></svg></span><h3 style="margin: 0; font-size: 26px; font-weight: 700">PAYV Terminal</h3></div>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5F5B54">Enter an amount, press the check, take the tap, see the result. Balance on its own key. No smartphone needed at the till.</p>
+</article>
+<article style="flex: 1 1 250px; background: #FFFFFF; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 14px"><span style="display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 15px; background: #0B0B0B; color: #F5F3EE"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect><path d="M11 18h2"></path></svg></span><h3 style="margin: 0; font-size: 26px; font-weight: 700">PAYV App</h3></div>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5F5B54">The control centre. Balance, top-up from mobile money, withdrawal to MoMo or a bank, full history and card controls.</p>
+</article>
+<article style="flex: 1 1 250px; background: #FFFFFF; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 14px"><span style="display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 15px; background: #0B0B0B; color: #F5F3EE"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="5" r="2.2"></circle><circle cx="5.5" cy="18" r="2.2"></circle><circle cx="18.5" cy="18" r="2.2"></circle><path d="M12 7.2v4.3M12 11.5l-5.4 4.6M12 11.5l5.4 4.6"></path></svg></span><h3 style="margin: 0; font-size: 26px; font-weight: 700">PAYV Network</h3></div>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5F5B54">The authorisation and ledger behind every tap, connected to licensed banks and mobile-money partners.</p>
+</article>
+</div>
+</div>
+</section>
+
+<section id="how" style="background: #0B0B0B; color: #F5F3EE">
+<div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 9vw, 112px) clamp(16px, 4vw, 48px); box-sizing: border-box">
+<div style="text-align: center">
+<h2 style="margin: 0; font-size: clamp(36px, 5vw, 64px); font-weight: 700; line-height: 1.04; letter-spacing: -0.025em">How a payment works</h2>
+<p style="margin: 16px auto 0; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: #A19D96; max-width: 620px">Four moves at the till, and one rule underneath: nobody is ever charged twice.</p>
+</div>
+<div style="display: flex; gap: 18px; margin-top: 48px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px">
+
+<article style="flex: 0 0 300px; scroll-snap-align: start; background: var(--accent); color: #0B0B0B; border-radius: 28px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px; min-height: 440px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase">Step</span><span style="font-size: 72px; font-weight: 800; line-height: 0.85; letter-spacing: -0.04em">01</span></div>
+<div style="background: #0B0B0B; color: #F5F3EE; border-radius: 16px; padding: 18px; height: 124px; box-sizing: border-box; font-family: 'IBM Plex Mono', monospace; display: flex; flex-direction: column; justify-content: center; gap: 6px"><span style="font-size: 12px; color: #9A9A9A">Enter amount</span><span style="font-size: 26px; font-weight: 600">GH₵ 12.50</span></div>
+<div style="margin-top: auto"><h3 style="margin: 0; font-size: 30px; font-weight: 700">Enter</h3><p style="margin: 10px 0 0; font-size: 17px; line-height: 1.45">The merchant keys in the amount. The decimal key handles pesewas.</p></div>
+</article>
+
+<article style="flex: 0 0 300px; scroll-snap-align: start; background: var(--accent); color: #0B0B0B; border-radius: 28px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px; min-height: 440px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase">Step</span><span style="font-size: 72px; font-weight: 800; line-height: 0.85; letter-spacing: -0.04em">02</span></div>
+<div style="background: #0B0B0B; color: #F5F3EE; border-radius: 16px; padding: 18px; height: 124px; box-sizing: border-box; font-family: 'IBM Plex Mono', monospace; display: flex; flex-direction: column; justify-content: center; gap: 6px"><span style="font-size: 12px; color: #9A9A9A">Tap card to pay</span><span style="font-size: 26px; font-weight: 600">GH₵ 12.50</span></div>
+<div style="margin-top: auto"><h3 style="margin: 0; font-size: 30px; font-weight: 700">Confirm</h3><p style="margin: 10px 0 0; font-size: 17px; line-height: 1.45">The green check locks the amount and wakes the reader.</p></div>
+</article>
+
+<article style="flex: 0 0 300px; scroll-snap-align: start; background: var(--accent); color: #0B0B0B; border-radius: 28px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px; min-height: 440px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase">Step</span><span style="font-size: 72px; font-weight: 800; line-height: 0.85; letter-spacing: -0.04em">03</span></div>
+<div style="background: #0B0B0B; color: #F5F3EE; border-radius: 16px; padding: 18px; height: 124px; box-sizing: border-box; font-family: 'IBM Plex Mono', monospace; display: flex; flex-direction: column; justify-content: center; gap: 6px"><span style="font-size: 12px; color: #F5C542">Authorising…</span><span style="font-size: 26px; font-weight: 600">GH₵ 12.50</span><span style="font-size: 11px; color: #9A9A9A">Card · funds · limits</span></div>
+<div style="margin-top: auto"><h3 style="margin: 0; font-size: 30px; font-weight: 700">Tap</h3><p style="margin: 10px 0 0; font-size: 17px; line-height: 1.45">The customer taps. PAYV checks the card, funds, limits and fraud rules, then records both sides in the ledger.</p></div>
+</article>
+
+<article style="flex: 0 0 300px; scroll-snap-align: start; background: var(--accent); color: #0B0B0B; border-radius: 28px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px; min-height: 440px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase">Step</span><span style="font-size: 72px; font-weight: 800; line-height: 0.85; letter-spacing: -0.04em">04</span></div>
+<div style="background: #0B7F3D; color: #FFFFFF; border-radius: 16px; padding: 14px; height: 124px; box-sizing: border-box; font-family: -apple-system, 'Segoe UI', Roboto, system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px"><svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="10.5"></circle><path d="M7.5 12.5l3 3 6-6.5"></path></svg><span style="font-size: 14px; font-weight: 700">Approved</span><span style="font-size: 20px; font-weight: 700">GH₵ 12.50</span></div>
+<div style="margin-top: auto"><h3 style="margin: 0; font-size: 30px; font-weight: 700">Done</h3><p style="margin: 10px 0 0; font-size: 17px; line-height: 1.45">A clear result, a beep and a light. Back to the amount, ready for the next customer.</p></div>
+</article>
+
+<article style="flex: 0 0 300px; scroll-snap-align: start; background: #1C1A19; color: #F5F3EE; border: 1px solid #3A3734; border-radius: 28px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 22px; min-height: 440px">
+<div style="display: flex; justify-content: space-between; align-items: flex-start"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #A19D96">The rule</span><span style="font-size: 72px; font-weight: 800; line-height: 0.85; letter-spacing: -0.04em">05</span></div>
+<div style="background: #050505; color: #F5F3EE; border: 1px solid #2E2E2E; border-radius: 16px; padding: 18px; height: 124px; box-sizing: border-box; font-family: 'IBM Plex Mono', monospace; display: flex; flex-direction: column; justify-content: center; gap: 6px"><span style="font-size: 12px; color: #F5C542">Checking payment…</span><span style="font-size: 17px; font-weight: 600">Do not charge again</span></div>
+<div style="margin-top: auto"><h3 style="margin: 0; font-size: 30px; font-weight: 700">Safe by default</h3><p style="margin: 10px 0 0; font-size: 17px; line-height: 1.45; color: #CFCBC4">If the signal drops, the terminal never guesses. It resolves the payment before anyone tries again.</p></div>
+</article>
+
+</div>
+</div>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 9vw, 112px) clamp(16px, 4vw, 48px); box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; gap: 20px 48px; align-items: flex-end">
+<div style="flex: 2 1 520px; min-width: 0">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #5F5B54">The terminal</span>
+<h2 style="margin: 14px 0 0; font-size: clamp(36px, 5vw, 64px); font-weight: 700; line-height: 1.04; letter-spacing: -0.025em">Built for a trotro shift, not a supermarket.</h2>
+</div>
+<p style="flex: 1 1 320px; margin: 0; font-size: 19px; line-height: 1.5; color: #5F5B54">Everything a trader needs and nothing they don't. No touchscreen, no menus, no smartphone required.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 44px">
+<div style="flex: 1 1 250px; background: #FFFFFF; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5F5B54">01</span><h3 style="margin: 0; font-size: 21px; font-weight: 700">Physical keypad</h3><p style="margin: 0; font-size: 16px; line-height: 1.45; color: #5F5B54">Number keys, a decimal for pesewas, and C to clear a mistake.</p></div>
+<div style="flex: 1 1 250px; background: #FFFFFF; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5F5B54">02</span><h3 style="margin: 0; font-size: 21px; font-weight: 700">Three action keys</h3><p style="margin: 0; font-size: 16px; line-height: 1.45; color: #5F5B54">Green check to confirm, red X to cancel, Balance on its own key.</p></div>
+<div style="flex: 1 1 250px; background: #FFFFFF; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5F5B54">03</span><h3 style="margin: 0; font-size: 21px; font-weight: 700">One tap target</h3><p style="margin: 0; font-size: 16px; line-height: 1.45; color: #5F5B54">A small, clearly marked area for the card. No hunting.</p></div>
+<div style="flex: 1 1 250px; background: #FFFFFF; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5F5B54">04</span><h3 style="margin: 0; font-size: 21px; font-weight: 700">Readable in the sun</h3><p style="margin: 0; font-size: 16px; line-height: 1.45; color: #5F5B54">A high-contrast screen for outdoor stalls and bus doors.</p></div>
+<div style="flex: 1 1 250px; background: #FFFFFF; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5F5B54">05</span><h3 style="margin: 0; font-size: 21px; font-weight: 700">Beep and light</h3><p style="margin: 0; font-size: 16px; line-height: 1.45; color: #5F5B54">Every result is heard and seen, even in a packed trotro.</p></div>
+<div style="flex: 1 1 250px; background: #FFFFFF; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5F5B54">06</span><h3 style="margin: 0; font-size: 21px; font-weight: 700">One-press repeat fare</h3><p style="margin: 0; font-size: 16px; line-height: 1.45; color: #5F5B54">Same fare, next passenger: press the check and take the tap.</p></div>
+<div style="flex: 1 1 250px; background: #FFFFFF; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5F5B54">07</span><h3 style="margin: 0; font-size: 21px; font-weight: 700">Private balance</h3><p style="margin: 0; font-size: 16px; line-height: 1.45; color: #5F5B54">A quick PIN keeps takings off the screen in a crowd.</p></div>
+<div style="flex: 1 1 250px; background: #FFFFFF; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 10px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5F5B54">08</span><h3 style="margin: 0; font-size: 21px; font-weight: 700">All-day power</h3><p style="margin: 0; font-size: 16px; line-height: 1.45; color: #5F5B54">A battery for a full shift, 4G connectivity and USB-C charging.</p></div>
+</div>
+<p style="margin: 22px 0 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.6; color: #5F5B54">Version one uses proven off-the-shelf NFC and 4G hardware in a PAYV shell. Custom tooling comes after the pilot.</p>
+</section>
+
+<section style="background: #E8E4DC">
+<div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 9vw, 112px) clamp(16px, 4vw, 48px); box-sizing: border-box">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #5F5B54">Go-to-market</span>
+<h2 style="margin: 14px 0 0; font-size: clamp(36px, 5vw, 64px); font-weight: 700; line-height: 1.04; letter-spacing: -0.025em; max-width: 960px">We start where one yes switches on hundreds of payers.</h2>
+<p style="margin: 18px 0 0; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: #5F5B54; max-width: 700px">PAYV won't recruit stalls one at a time. We sell to whoever controls acceptance, then grow outward from a dense cluster.</p>
+<div style="position: relative; margin-top: 40px; border-radius: 28px; overflow: hidden">
+<img src="assets/aerial-market.jpg" alt="Aerial view of a dense market street packed with umbrellas, stalls, cars and shoppers" style="display: block; width: 100%; height: clamp(260px, 34vw, 440px); object-fit: cover; object-position: 50% 45%">
+<span class="payv-glass" style="position: absolute; left: 16px; bottom: 16px; padding: 10px 16px; border-radius: 999px; font-size: 15px; font-weight: 600; color: #FFFFFF; text-shadow: 0 1px 8px rgba(0,0,0,0.55)">One street. Hundreds of sellers. One agreement.</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px">
+<article style="flex: 1 1 250px; background: #FFFFFF; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<span style="align-self: flex-start; padding: 7px 14px; border-radius: 999px; background: var(--accent); font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase">Transport</span>
+<h3 style="margin: 4px 0 0; font-size: 26px; font-weight: 700">Trotro owners</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5F5B54">Every fare visible as it happens, so takings stop leaking. Mates earn a share of digital fares, so they champion the tap.</p>
+</article>
+<article style="flex: 1 1 250px; background: #FFFFFF; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<span style="align-self: flex-start; padding: 7px 14px; border-radius: 999px; background: var(--accent); font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase">Markets</span>
+<h3 style="margin: 4px 0 0; font-size: 26px; font-weight: 700">Market associations</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5F5B54">One agreement turns on a whole row of stalls. Traders check takings on the terminal, not a phone.</p>
+</article>
+<article style="flex: 1 1 250px; background: #FFFFFF; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<span style="align-self: flex-start; padding: 7px 14px; border-radius: 999px; background: var(--accent); font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase">Education</span>
+<h3 style="margin: 4px 0 0; font-size: 26px; font-weight: 700">Schools and campuses</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5F5B54">Parents or students top up from mobile money. The canteen takes a tap, and spending stays visible.</p>
+</article>
+<article style="flex: 1 1 250px; background: #FFFFFF; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<span style="align-self: flex-start; padding: 7px 14px; border-radius: 999px; background: var(--accent); font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase">Fuel</span>
+<h3 style="margin: 4px 0 0; font-size: 26px; font-weight: 700">Fuel stations</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #5F5B54">Drivers spend fares where they refuel. Money keeps moving inside the network instead of being withdrawn.</p>
+</article>
+</div>
+</div>
+</section>
+
+<section style="background: #0B0B0B; color: #F5F3EE">
+<div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 9vw, 112px) clamp(16px, 4vw, 48px); box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; gap: 20px 48px; align-items: flex-end">
+<h2 style="flex: 1 1 420px; margin: 0; font-size: clamp(40px, 6vw, 80px); font-weight: 800; line-height: 0.98; letter-spacing: -0.03em">No cash.<br>By design.</h2>
+<p style="flex: 1 1 360px; margin: 0; font-size: 19px; line-height: 1.5; color: #A19D96">PAYV moves and records digital money through licensed partners. It never touches a note or a coin.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 44px">
+<div style="flex: 1 1 340px; background: #161616; border: 1px solid #2E2E2E; border-radius: 26px; padding: 28px">
+<h3 style="margin: 0 0 18px; font-size: 22px; font-weight: 700">PAYV does</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.4">
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex: 0 0 20px; margin-top: 1px; fill: none; stroke: var(--accent); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Top up from mobile money</span></li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex: 0 0 20px; margin-top: 1px; fill: none; stroke: var(--accent); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Pay merchants with a card tap</span></li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex: 0 0 20px; margin-top: 1px; fill: none; stroke: var(--accent); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Withdraw to MoMo or a bank account</span></li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex: 0 0 20px; margin-top: 1px; fill: none; stroke: var(--accent); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Show balances and full history</span></li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex: 0 0 20px; margin-top: 1px; fill: none; stroke: var(--accent); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>Connect to licensed banks and MoMo providers</span></li>
+</ul>
+</div>
+<div style="flex: 1 1 340px; background: #161616; border: 1px solid #2E2E2E; border-radius: 26px; padding: 28px">
+<h3 style="margin: 0 0 18px; font-size: 22px; font-weight: 700">PAYV doesn't</h3>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.4">
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex: 0 0 20px; margin-top: 1px; fill: none; stroke: #FF6B5E; stroke-width: 2.6; stroke-linecap: round"><path d="M6.5 6.5l11 11"></path><path d="M17.5 6.5l-11 11"></path></svg><span>Collect cash for PAYV balances</span></li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex: 0 0 20px; margin-top: 1px; fill: none; stroke: #FF6B5E; stroke-width: 2.6; stroke-linecap: round"><path d="M6.5 6.5l11 11"></path><path d="M17.5 6.5l-11 11"></path></svg><span>Run counters or cash tills</span></li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex: 0 0 20px; margin-top: 1px; fill: none; stroke: #FF6B5E; stroke-width: 2.6; stroke-linecap: round"><path d="M6.5 6.5l11 11"></path><path d="M17.5 6.5l-11 11"></path></svg><span>Operate a cash agent network</span></li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex: 0 0 20px; margin-top: 1px; fill: none; stroke: #FF6B5E; stroke-width: 2.6; stroke-linecap: round"><path d="M6.5 6.5l11 11"></path><path d="M17.5 6.5l-11 11"></path></svg><span>Send staff to move money</span></li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex: 0 0 20px; margin-top: 1px; fill: none; stroke: #FF6B5E; stroke-width: 2.6; stroke-linecap: round"><path d="M6.5 6.5l11 11"></path><path d="M17.5 6.5l-11 11"></path></svg><span>Sell terminals that take or give cash</span></li>
+</ul>
+</div>
+</div>
+<h3 style="margin: 64px 0 0; font-size: clamp(26px, 3vw, 36px); font-weight: 700; letter-spacing: -0.02em">Who does what</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px">
+<div style="flex: 1 1 260px; border-top: 2px solid var(--accent); padding-top: 20px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A19D96">Licensed partner</span><p style="margin: 10px 0 0; font-size: 18px; line-height: 1.5">Holds and safeguards customer funds, issues the e-money, settles payments and runs required checks.</p></div>
+<div style="flex: 1 1 260px; border-top: 2px solid var(--accent); padding-top: 20px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A19D96">PAYV</span><p style="margin: 10px 0 0; font-size: 18px; line-height: 1.5">The brand, cards, terminals, software, ledger operations and merchant experience, within its permitted role.</p></div>
+<div style="flex: 1 1 260px; border-top: 2px solid var(--accent); padding-top: 20px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A19D96">Regulator</span><p style="margin: 10px 0 0; font-size: 18px; line-height: 1.5">A supervised pilot through the Bank of Ghana regulatory sandbox before full launch.</p></div>
+</div>
+<p style="margin: 28px 0 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.6; color: #A19D96">Exact structure to be confirmed with the partner and Ghanaian payments counsel before any live funds move.</p>
+</div>
+</section>
+
+<section style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 9vw, 112px) clamp(16px, 4vw, 48px); box-sizing: border-box">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #5F5B54">Roadmap</span>
+<h2 style="margin: 14px 0 40px; font-size: clamp(36px, 5vw, 64px); font-weight: 700; line-height: 1.04; letter-spacing: -0.025em">From concept to network</h2>
+<div style="border-top: 1px solid #CFCAC0">
+<div style="display: flex; flex-wrap: wrap; gap: 10px 32px; padding: 28px 0; border-bottom: 1px solid #CFCAC0; align-items: baseline">
+<span style="flex: 0 0 72px; font-size: 40px; font-weight: 800; letter-spacing: -0.03em">01</span>
+<h3 style="flex: 1 1 220px; margin: 0; font-size: 28px; font-weight: 700">Validate</h3>
+<div style="flex: 2 1 400px; min-width: 0"><p style="margin: 0; font-size: 18px; line-height: 1.5; color: #5F5B54">Ride the route and walk the market. Interview owners, mates, traders and passengers about where payments slow down.</p><span style="display: block; margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase">Deliverable · validated problem and pilot requirements</span></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 32px; padding: 28px 0; border-bottom: 1px solid #CFCAC0; align-items: baseline">
+<span style="flex: 0 0 72px; font-size: 40px; font-weight: 800; letter-spacing: -0.03em">02</span>
+<h3 style="flex: 1 1 220px; margin: 0; font-size: 28px; font-weight: 700">Operating model</h3>
+<div style="flex: 2 1 400px; min-width: 0"><p style="margin: 0; font-size: 18px; line-height: 1.5; color: #5F5B54">Secure a licensed partner, agree who holds funds and who settles, and prepare the sandbox application.</p><span style="display: block; margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase">Deliverable · regulatory and partner model</span></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 32px; padding: 28px 0; border-bottom: 1px solid #CFCAC0; align-items: baseline">
+<span style="flex: 0 0 72px; font-size: 40px; font-weight: 800; letter-spacing: -0.03em">03</span>
+<h3 style="flex: 1 1 220px; margin: 0; font-size: 28px; font-weight: 700">Prototype</h3>
+<div style="flex: 2 1 400px; min-width: 0"><p style="margin: 0; font-size: 18px; line-height: 1.5; color: #5F5B54">The full terminal flow on off-the-shelf NFC hardware, real secure cards and a simulated ledger.</p><span style="display: block; margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase">Deliverable · working end-to-end prototype</span></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 32px; padding: 28px 0; border-bottom: 1px solid #CFCAC0; align-items: baseline">
+<span style="flex: 0 0 72px; font-size: 40px; font-weight: 800; letter-spacing: -0.03em">04</span>
+<h3 style="flex: 1 1 220px; margin: 0; font-size: 28px; font-weight: 700">Controlled pilot</h3>
+<div style="flex: 2 1 400px; min-width: 0"><p style="margin: 0; font-size: 18px; line-height: 1.5; color: #5F5B54">One route, its fuel station and one market or campus, with success thresholds set before day one.</p><span style="display: block; margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase">Deliverable · evidence of reliability and demand</span></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 32px; padding: 28px 0; border-bottom: 1px solid #CFCAC0; align-items: baseline">
+<span style="flex: 0 0 72px; font-size: 40px; font-weight: 800; letter-spacing: -0.03em">05</span>
+<h3 style="flex: 1 1 220px; margin: 0; font-size: 28px; font-weight: 700">Focused launch</h3>
+<div style="flex: 2 1 400px; min-width: 0"><p style="margin: 0; font-size: 18px; line-height: 1.5; color: #5F5B54">Expand cluster by cluster, only where the pilot numbers hold.</p><span style="display: block; margin-top: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase">Deliverable · a repeatable launch model</span></div>
+</div>
+</div>
+<div style="margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #5F5B54; margin-right: 6px">Pilot scorecard</span>
+<span style="padding: 10px 16px; border-radius: 999px; border: 1px solid #0B0B0B; font-size: 15px; font-weight: 600">Payment success rate</span>
+<span style="padding: 10px 16px; border-radius: 999px; border: 1px solid #0B0B0B; font-size: 15px; font-weight: 600">Time to complete</span>
+<span style="padding: 10px 16px; border-radius: 999px; border: 1px solid #0B0B0B; font-size: 15px; font-weight: 600">Zero duplicate charges</span>
+<span style="padding: 10px 16px; border-radius: 999px; border: 1px solid #0B0B0B; font-size: 15px; font-weight: 600">Repeat usage</span>
+<span style="padding: 10px 16px; border-radius: 999px; border: 1px solid #0B0B0B; font-size: 15px; font-weight: 600">Merchant retention</span>
+<span style="padding: 10px 16px; border-radius: 999px; border: 1px solid #0B0B0B; font-size: 15px; font-weight: 600">Cost per transaction</span>
+</div>
+</section>
+
+<section style="background: #E8E4DC">
+<div style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 96px) clamp(16px, 4vw, 48px); box-sizing: border-box">
+<h2 style="margin: 0; font-size: clamp(36px, 5vw, 64px); font-weight: 700; line-height: 1.04; letter-spacing: -0.025em">Why now</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 36px">
+<div style="flex: 1 1 300px; background: #FFFFFF; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #5F5B54">Cheaper digital money</span><p style="margin: 0; font-size: 18px; line-height: 1.5">Ghana repealed the 1% e-levy on electronic transfers in April 2025. The money is already digital; the moment of payment isn't.</p></div>
+<div style="flex: 1 1 300px; background: #FFFFFF; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #5F5B54">A path to pilot</span><p style="margin: 0; font-size: 18px; line-height: 1.5">The Bank of Ghana regulatory sandbox lets new payment models test under supervision, alongside licensed partners.</p></div>
+<div style="flex: 1 1 300px; background: #FFFFFF; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #5F5B54">The tap is arriving</span><p style="margin: 0; font-size: 18px; line-height: 1.5">Transport tap cards and bank tap-to-pay launches are teaching the gesture. The gap is one network built for the everyday till.</p></div>
+</div>
+</div>
+</section>
+
+<section id="ask" style="background: #0B0B0B; color: #F5F3EE">
+<div style="max-width: 1200px; margin: 0 auto; padding: clamp(80px, 10vw, 128px) clamp(16px, 4vw, 48px) clamp(56px, 7vw, 80px); box-sizing: border-box">
+<div style="position: relative; border-radius: 32px; overflow: hidden; min-height: clamp(460px, 52vw, 620px); display: flex; flex-direction: column; justify-content: flex-end">
+<img src="assets/flag-seller.jpg" alt="A coconut seller smiles and holds up a Ghana flag beside his stall" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,11,0) 35%, rgba(11,11,11,0.6) 65%, rgba(11,11,11,0.92) 100%)"></div>
+<div style="position: relative; z-index: 1; padding: clamp(24px, 4vw, 48px); text-shadow: 0 2px 18px rgba(0,0,0,0.5)">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent)">The ask</span>
+<h2 style="margin: 14px 0 0; font-size: clamp(44px, 7vw, 96px); font-weight: 800; line-height: 0.98; letter-spacing: -0.035em; color: #FFFFFF">Let's build the tap.</h2>
+<p style="margin: 18px 0 0; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: #E6E2DB; max-width: 560px">PAYV is at concept stage. This is what takes it to a live pilot.</p>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 44px">
+<div style="flex: 1 1 280px; background: #161616; border: 1px solid #2E2E2E; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px"><span style="font-size: 44px; font-weight: 800; line-height: 1; color: var(--accent)">01</span><h3 style="margin: 8px 0 0; font-size: 24px; font-weight: 700">A licensed partner</h3><p style="margin: 0; font-size: 17px; line-height: 1.5; color: #CFCBC4">A bank or e-money issuer to hold customer funds, settle payments and carry the regulated role.</p></div>
+<div style="flex: 1 1 280px; background: #161616; border: 1px solid #2E2E2E; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px"><span style="font-size: 44px; font-weight: 800; line-height: 1; color: var(--accent)">02</span><h3 style="margin: 8px 0 0; font-size: 24px; font-weight: 700">Pilot partners</h3><p style="margin: 0; font-size: 17px; line-height: 1.5; color: #CFCBC4">One trotro route and its owners, the fuel station on that route, and one market or campus.</p></div>
+<div style="flex: 1 1 280px; background: #161616; border: 1px solid #2E2E2E; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 12px"><span style="font-size: 44px; font-weight: 800; line-height: 1; color: var(--accent)">03</span><h3 style="margin: 8px 0 0; font-size: 24px; font-weight: 700">[Amount] pre-seed</h3><p style="margin: 0; font-size: 17px; line-height: 1.5; color: #CFCBC4">To build the prototype, produce a pilot batch of terminals and cards, and run a measured pilot.</p></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px 48px; margin-top: 56px; padding-top: 32px; border-top: 1px solid #2E2E2E; font-size: 19px">
+<div><span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A19D96">Contact</span><span style="display: block; margin-top: 8px; font-weight: 600">Emmanuel Boakye</span></div>
+<div><span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A19D96">Email</span><a href="mailto:boakyemmanuel1@outlook.com" style="display: block; margin-top: 8px; font-weight: 600; color: #F5F3EE; text-decoration: underline; text-underline-offset: 4px">boakyemmanuel1@outlook.com</a></div>
+<div><span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A19D96">Phone</span><a href="tel:+447825157545" style="display: block; margin-top: 8px; font-weight: 600; color: #F5F3EE; text-decoration: underline; text-underline-offset: 4px">+44 7825 157545 (UK)</a><a href="tel:+233558434694" style="display: block; margin-top: 6px; font-weight: 600; color: #F5F3EE; text-decoration: underline; text-underline-offset: 4px">+233 55 843 4694 (Ghana)</a></div>
+</div>
+</div>
+<footer style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) 36px; box-sizing: border-box">
+<div style="font-size: clamp(120px, 30vw, 430px); line-height: 0.84; font-weight: 900; letter-spacing: -0.05em; text-align: center" aria-hidden="true">PAYV</div>
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; margin-top: 28px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #A19D96">
+<span>One network. Everyday commerce.</span>
+<span>Tap. Pay. Move.</span>
+<span>©2026 PAYV · Concept pitch</span>
+</div>
+<p style="margin: 18px 0 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.6; letter-spacing: 0.04em; color: #8C8880">Photography: TheFotoWalker, Bobpixel and [other photographer credits].</p>
+</footer>
+</section>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
